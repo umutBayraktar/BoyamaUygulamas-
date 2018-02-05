@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tual</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+			#tualOzellik{
+				height:300px;
+				width:300px;
+				border:3px solid black;
+				margin-top:400px;
+				margin-left:1025px; 
+			}
+			#tual{
+				border:3px solid gray;
+				margin-bottom::250px;
+				margin-right:300px;
+			}
+			#satir,#sutun{
+				height:30px;
+				width:250px;
+				margin:15px;
+			}
+			label{
+				font-size: 20px;
+				margin:20px;
+			}
+			#tabloOlustur{
+				height:35px;
+				width: 75px;
+				margin:5px 15px;
+			}
+			td{
+				border:1px solid black;
+				height:20px;
+				width:20px;
+			}
+	</style>
+</head>
+<body>
+	<div id="tual">
+		<table id="paneller">
+			
+		</table>
+	</div>
+	<div id="tualOzellik">	
+		<br/><br/>
+		<label for="satir">Satır Sayısı:</label>
+		<input type="text" name="satirSayisi" id="satir" placeholder="Satır Sayısını Giriniz...">
+		<label for="sutun">Satır Sayısı:</label>
+		<input type="text" name="sutunSayisi" id="sutun" placeholder="Sütun Sayısını Giriniz..." >
+		<button id="tabloOlustur">Tablo Oluştur</button>
+		<input type="color" name="renk" id="renkSecimi">
+		<script type="text/javascript">
+			var buton=document.getElementById("tabloOlustur");
+			var satirGirdi=document.getElementById("satir");
+			var sutunGirdi=document.getElementById("sutun");
+			var satirSayisi;
+			var sutunSayisi;
+			var temp=" ";
+			buton.addEventListener("click",function(){	
+				if(!isNaN(satirGirdi.value)&&satirGirdi.text!=""){
+					satirSayisi=parseInt(satirGirdi.value);
+				}
+				if(!isNaN(sutunGirdi.value)&&sutunGirdi.text!=""){
+					sutunSayisi=parseInt(sutunGirdi.value);					
+				}			
+				for (var i = 0; i < satirSayisi; i++) {					
+					temp+="<tr>";
+					for (var j = 0; j < sutunSayisi; j++) {
+						temp+="<td></td>";						
+					}						
+					temp+="</tr>";
+				}
+				document.getElementById("paneller").innerHTML=temp;	
+				var paneller=document.querySelectorAll("td");
+				for (var i = 0; i < paneller.length; i++){
+					paneller[i].addEventListener("click",function(){
+					this.style.backgroundColor=""+document.getElementById("renkSecimi").value;
+				});
+			}				
+			});
+			
+		</script>
+	</div>
+</body>
+</html>
